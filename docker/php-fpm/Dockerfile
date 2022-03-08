@@ -1,7 +1,5 @@
 FROM php:7.4-fpm
 
-MAINTAINER Shayan Davarzani <info@shayand.com>
-
 RUN apt-get update && apt-get install -y \
     unzip wget vim
 
@@ -11,7 +9,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Set timezone
 RUN rm /etc/localtime \
-    && ln -s /usr/share/zoneinfo/Asia/Tehran /etc/localtime \
+    && ln -s /usr/share/zoneinfo/Europe/Belgrade /etc/localtime \
     && "date"
 
 # Install PDO
@@ -23,7 +21,6 @@ RUN apt-get update && apt-get install -y \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
-        vim \
     && docker-php-ext-install -j$(nproc) iconv bcmath \
     && docker-php-ext-install -j$(nproc) gd
 
